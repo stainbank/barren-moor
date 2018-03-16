@@ -11,9 +11,11 @@ public abstract class MoorFeature {
 	int easting;
 	int northing;
 	
-	public double getDistanceFromPlayer() {
+	double getDistanceFromPlayer() {
 		return Math.sqrt(Math.pow(easting, 2) + Math.pow(northing, 2));
 	}
+	
+	void updateLocation
 
 
 }
