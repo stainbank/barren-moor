@@ -17,4 +17,16 @@ class Translator {
 		eastingToDirection.put(-1, "W");
 		northingToDirection.put(-1, "S");
 	}
+	
+	int translateDirection(String direction) {
+		return directionToBearing.get(direction);
+	}
+	
+	String translateEasting(int easting) {
+		return eastingToDirection.get(easting);
+	}
+
+	String translateNorthing(int northing) {
+		return northingToDirection.get(northing);
+	}
 }
