@@ -8,14 +8,15 @@ public abstract class MoorFeature {
 	 * "location", which changes as the player moves. In effect, the player
 	 * is fixed and the world moves around them.
 	 */
-	int easting;
-	int northing;
+	private int easting;
+	private int northing;
 	
 	double getDistanceFromPlayer() {
 		return Math.sqrt(Math.pow(easting, 2) + Math.pow(northing, 2));
 	}
 	
-	void updateLocation
-
-
+	void updateLocation(int northing, int easting) {
+		this.easting += easting;
+		this.northing += northing;
+	}
 }
