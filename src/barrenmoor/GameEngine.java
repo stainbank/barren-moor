@@ -33,12 +33,25 @@ class GameEngine {
 	
 	void makeAndDisplayMove(int easting, int northing) {
 		movePlayer(easting, northing);
+		displayPlayerMovement(easting, northing);
 		displayTreasureDistance();
 		if (treasureLocationVisible) displayTreasureLocation();
 	}
 
 	void movePlayer(int easting, int northing){
 		treasure.moveRelativeToPlayer(easting, northing);
+	}
+	
+	void displayPlayerMovement(int easting, int northing){
+		boolean eastingChanges = easting != 0;
+		boolean northingChanges = northing != 0;
+		String eastingMessage = (eastingChanges) ? String.format("%d%s", Math.abs(easting), translator.translateEasting(easting)) : "";
+		String northingMessage = (northingChanges) ? String.format("%d%s", Math.abs(northing), translator.translateNorthing(northing)) : "";
+		String joiner = (eastingChanges && northingChanges) ? ", " : "";
+		
+		String messageTemplate = "Moved %s%s%s";
+		String message = String.format(messageTemplate, eastingMessage, joiner, northingMessage);
+		display.display(message);
 	}
 
 	void displayTreasureLocation() {
