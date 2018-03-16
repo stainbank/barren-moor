@@ -17,5 +17,6 @@ class GameEngine {
 	
 	void playGame() {
 		displayMessage("Starting game");
+		displayMessage(treasure.toString());
 	}
 }

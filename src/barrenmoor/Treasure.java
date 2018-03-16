@@ -5,4 +5,8 @@ class Treasure extends MoorFeature {
 		this.easting = easting;
 		this.northing = northing;
 	}
+	
+	public String toString(){
+		return String.format("Treasure @ (%d, %d)", easting, northing);
+	}
 }
