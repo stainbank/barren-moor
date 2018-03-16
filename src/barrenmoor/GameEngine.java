@@ -39,8 +39,22 @@ class GameEngine {
 		static String eastingToDirection(int easting) {
 			return (easting > 0) ? "E" : "W";
 		}
+
+		static int directionToNorthing(String direction) {
+			int northing = 0;
+			if (direction == "N"){northing = 1;}
+			else if (direction == "S") {northing = -1;}
+			return northing;
+		}
+
+		static int directionToEasting(String direction) {
+			int easting = 0;
+			if (direction == "E"){easting = 1;}
+			else if (direction == "W") {easting = -1;}
+			return easting;
+		}
 	}
-	
+
 	void displayTreasureLocation() {
 		String message = String.format("%s @ %dE, %dN", treasure, treasure.getEasting(), treasure.getNorthing());
 		display.display(message);
