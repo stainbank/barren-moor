@@ -4,6 +4,7 @@ class GameEngine {
 	DisplayManager display = new DisplayManager();
 	Translator translator = new Translator();
 	MoorFeature treasure;
+	boolean treasureLocationVisible = false;
 
 	GameEngine(){
 		initialiseGame();
@@ -11,6 +12,10 @@ class GameEngine {
 
 	void initialiseGame() {
 		generateTreasure();
+	}
+	
+	void activateCheats() {
+		treasureLocationVisible = true;
 	}
 	
 	void playGame() {
@@ -29,7 +34,7 @@ class GameEngine {
 	void makeAndDisplayMove(int easting, int northing) {
 		movePlayer(easting, northing);
 		displayTreasureDistance();
-		displayTreasureLocation();
+		if (treasureLocationVisible) displayTreasureLocation();
 	}
 
 	void movePlayer(int easting, int northing){
