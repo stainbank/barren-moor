@@ -2,6 +2,7 @@ package barrenmoor;
 
 class GameEngine {
 	DisplayManager display = new DisplayManager();
+	Translator translator = new Translator();
 	MoorFeature treasure;
 
 	GameEngine(){
@@ -32,7 +33,15 @@ class GameEngine {
 	}
 
 	void displayTreasureLocation() {
-		String message = String.format("%s @ %dE, %dN", treasure, treasure.getEasting(), treasure.getNorthing());
+		int easting = treasure.getEasting();
+		int northing = treasure.getNorthing();
+		String northingDirection = translator.translateNorthing(northing);
+		String eastingDirection = translator.translateEasting(easting);
+
+		String messageTemplate = "%s @ %d%s, %d%s";
+		String message = String.format(messageTemplate, treasure,
+				Math.abs(northing), northingDirection,
+				Math.abs(easting), eastingDirection);
 		display.display(message);
 	}
 	
