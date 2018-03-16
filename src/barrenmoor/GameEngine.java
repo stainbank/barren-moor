@@ -20,6 +20,7 @@ class GameEngine {
 	void playScriptedGame() {
 		movePlayer(-2, 6);
 		displayTreasureLocation();
+		displayTreasureDistance();
 	}
 
 	void movePlayer(int easting, int northing){
@@ -27,9 +28,8 @@ class GameEngine {
 	}
 	
 	void displayTreasureLocation() {
-		String message = String.format("%s", treasure);
+		String message = String.format("%s @ %dE, %dN", treasure, treasure.getEasting(), treasure.getNorthing());
 		display.display(message);
-		displayTreasureDistance();
 	}
 	
 	void displayTreasureDistance() {
