@@ -35,13 +35,11 @@ class GameEngine {
 	void displayTreasureLocation() {
 		int easting = treasure.getEasting();
 		int northing = treasure.getNorthing();
-		String northingDirection = translator.translateNorthing(northing);
-		String eastingDirection = translator.translateEasting(easting);
 
 		String messageTemplate = "%s @ %d%s, %d%s";
 		String message = String.format(messageTemplate, treasure,
-				Math.abs(northing), northingDirection,
-				Math.abs(easting), eastingDirection);
+				Math.abs(northing), translator.translateNorthing(northing),
+				Math.abs(easting), translator.translateEasting(easting));
 		display.display(message);
 	}
 	
