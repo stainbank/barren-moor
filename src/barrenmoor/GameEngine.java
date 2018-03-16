@@ -32,19 +32,12 @@ class GameEngine {
 	}
 
 	static class movementMapping{
-		static String northingToDirection(int northing) {
-			return (northing > 0) ? "N" : "S";
-		}
-
 		static String eastingToDirection(int easting) {
 			return (easting > 0) ? "E" : "W";
 		}
 
-		static int directionToNorthing(String direction) {
-			int northing = 0;
-			if (direction == "N"){northing = 1;}
-			else if (direction == "S") {northing = -1;}
-			return northing;
+		static String northingToDirection(int northing) {
+			return (northing > 0) ? "N" : "S";
 		}
 
 		static int directionToEasting(String direction) {
@@ -52,6 +45,13 @@ class GameEngine {
 			if (direction == "E"){easting = 1;}
 			else if (direction == "W") {easting = -1;}
 			return easting;
+		}
+
+		static int directionToNorthing(String direction) {
+			int northing = 0;
+			if (direction == "N"){northing = 1;}
+			else if (direction == "S") {northing = -1;}
+			return northing;
 		}
 	}
 
