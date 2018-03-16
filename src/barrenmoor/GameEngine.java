@@ -14,13 +14,20 @@ class GameEngine {
 
 	void playGame() {
 		display.display("Starting game");
-		display.display(treasure.toString());
-		movePlayer(2,-6);
-		display.display(treasure.toString());
+		playScriptedGame();
+	}
+
+	void playScriptedGame() {
+		movePlayer(-2, 6);
+		displayPlayerLocation();
 	}
 
 	void movePlayer(int easting, int northing){
 		treasure.moveRelativeToPlayer(easting, northing);
+	}
+	
+	void displayPlayerLocation() {
+		display.display(treasure.toString());
 	}
 	
 	void generateTreasure() {
