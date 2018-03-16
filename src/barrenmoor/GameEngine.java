@@ -19,13 +19,17 @@ class GameEngine {
 	}
 
 	void playScriptedGame() {
-		movePlayer(-2, 6);
-		displayTreasureLocation();
-		displayTreasureDistance();
+		makeAndDisplayMove(-2, 6);
 	}
 
 	void generateTreasure() {
 		treasure = new Treasure(4, 6); // temporary default location
+	}
+	
+	void makeAndDisplayMove(int easting, int northing) {
+		movePlayer(easting, northing);
+		displayTreasureDistance();
+		displayTreasureLocation();
 	}
 
 	void movePlayer(int easting, int northing){
