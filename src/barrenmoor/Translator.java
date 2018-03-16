@@ -23,10 +23,10 @@ class Translator {
 	}
 	
 	String translateEasting(int easting) {
-		return eastingToDirection.get(easting);
+		return eastingToDirection.get(Integer.signum(easting));
 	}
 
 	String translateNorthing(int northing) {
-		return northingToDirection.get(northing);
+		return northingToDirection.get(Integer.signum(northing));
 	}
 }
