@@ -30,6 +30,16 @@ class GameEngine {
 	void movePlayer(int easting, int northing){
 		treasure.moveRelativeToPlayer(easting, northing);
 	}
+
+	static class movementMapping{
+		static String northingToDirection(int northing) {
+			return (northing > 0) ? "N" : "S";
+		}
+
+		static String eastingToDirection(int easting) {
+			return (easting > 0) ? "E" : "W";
+		}
+	}
 	
 	void displayTreasureLocation() {
 		String message = String.format("%s @ %dE, %dN", treasure, treasure.getEasting(), treasure.getNorthing());
