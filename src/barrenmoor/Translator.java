@@ -2,15 +2,15 @@ package barrenmoor;
 import java.util.HashMap;
 
 class Translator {
-	static HashMap<String, Integer> directionToBearing = new HashMap<String, Integer>();
+	static HashMap<String, Integer> directionToBearingSign = new HashMap<String, Integer>();
 	static HashMap<Integer, String> eastingToDirection = new HashMap<Integer, String>();
 	static HashMap<Integer, String> northingToDirection = new HashMap<Integer, String>();
 
 	Translator(){
-		directionToBearing.put("E", 1);
-		directionToBearing.put("N", 1);
-		directionToBearing.put("W", -1);
-		directionToBearing.put("S", -1);
+		directionToBearingSign.put("E", 1);
+		directionToBearingSign.put("N", 1);
+		directionToBearingSign.put("W", -1);
+		directionToBearingSign.put("S", -1);
 		
 		eastingToDirection.put(1, "E");
 		northingToDirection.put(1, "N");
@@ -19,7 +19,7 @@ class Translator {
 	}
 	
 	int translateDirection(String direction) {
-		return directionToBearing.get(direction);
+		return directionToBearingSign.get(direction);
 	}
 	
 	String translateEasting(int easting) {
