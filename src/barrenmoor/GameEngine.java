@@ -1,15 +1,32 @@
 package barrenmoor;
+import java.util.HashMap;
 
 class GameEngine {
 	DisplayManager display = new DisplayManager();
 	MoorFeature treasure;
+	static HashMap<String, Integer> directionToBearing = new HashMap<String, Integer>();
+	static HashMap<Integer, String> eastingToDirection = new HashMap<Integer, String>();
+	static HashMap<Integer, String> northingToDirection = new HashMap<Integer, String>();
 
 	GameEngine(){
 		initialiseGame();
+		buildDirectionMaps();
 	}
 
 	void initialiseGame() {
 		generateTreasure();
+	}
+	
+	void buildDirectionMaps() {
+		directionToBearing.put("E", 1);
+		directionToBearing.put("N", 1);
+		directionToBearing.put("W", -1);
+		directionToBearing.put("S", -1);
+		
+		eastingToDirection.put(1, "E");
+		northingToDirection.put(1, "N");
+		eastingToDirection.put(-1, "W");
+		northingToDirection.put(-1, "S");
 	}
 
 	void playGame() {
@@ -29,30 +46,6 @@ class GameEngine {
 
 	void movePlayer(int easting, int northing){
 		treasure.moveRelativeToPlayer(easting, northing);
-	}
-
-	static class movementMapping{
-		static String eastingToDirection(int easting) {
-			return (easting > 0) ? "E" : "W";
-		}
-
-		static String northingToDirection(int northing) {
-			return (northing > 0) ? "N" : "S";
-		}
-
-		static int directionToEasting(String direction) {
-			int easting = 0;
-			if (direction == "E"){easting = 1;}
-			else if (direction == "W") {easting = -1;}
-			return easting;
-		}
-
-		static int directionToNorthing(String direction) {
-			int northing = 0;
-			if (direction == "N"){northing = 1;}
-			else if (direction == "S") {northing = -1;}
-			return northing;
-		}
 	}
 
 	void displayTreasureLocation() {
