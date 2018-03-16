@@ -19,15 +19,23 @@ class GameEngine {
 
 	void playScriptedGame() {
 		movePlayer(-2, 6);
-		displayPlayerLocation();
+		displayTreasureLocation();
 	}
 
 	void movePlayer(int easting, int northing){
 		treasure.moveRelativeToPlayer(easting, northing);
 	}
 	
-	void displayPlayerLocation() {
-		display.display(treasure.toString());
+	void displayTreasureLocation() {
+		String message = String.format("%s", treasure);
+		display.display(message);
+		displayTreasureDistance();
+	}
+	
+	void displayTreasureDistance() {
+		double treasureDistance = treasure.getDistanceFromPlayer();
+		String treasureDistanceMessage = String.format("%.2f arbitrary units", treasureDistance);
+		display.display(treasureDistanceMessage);
 	}
 	
 	void generateTreasure() {
