@@ -1,6 +1,7 @@
 package barrenmoor;
 
 class GameEngine {
+	DisplayManager display = new DisplayManager();
 	MoorFeature treasure;
 
 	GameEngine(){
@@ -8,8 +9,8 @@ class GameEngine {
 	}
 
 	void playGame() {
-		displayMessage("Starting game");
-		displayMessage(treasure.toString());
+		display.display("Starting game");
+		display.display(treasure.toString());
 	}
 	
 	void initialiseGame() {
@@ -17,10 +18,6 @@ class GameEngine {
 	}
 
 	void generateTreasure() {
-		this.treasure = new Treasure(4, 6); // temporary default location
+		treasure = new Treasure(4, 6); // temporary default location
 	}
-	
-	void displayMessage(String messageToUser) {
-		System.out.println(messageToUser);
-	}	
 }
