@@ -7,4 +7,8 @@ public abstract class MoorFeature {
 	 */
 	int northing;
 	int easting;
+	
+	public double getDistanceFromPlayer() {
+		return Math.sqrt(Math.pow(northing, 2) + Math.pow(easting, 2));
+	}
 }
