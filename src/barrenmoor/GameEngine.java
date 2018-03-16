@@ -23,6 +23,10 @@ class GameEngine {
 		displayTreasureDistance();
 	}
 
+	void generateTreasure() {
+		treasure = new Treasure(4, 6); // temporary default location
+	}
+
 	void movePlayer(int easting, int northing){
 		treasure.moveRelativeToPlayer(easting, northing);
 	}
@@ -36,9 +40,5 @@ class GameEngine {
 		double treasureDistance = treasure.getDistanceFromPlayer();
 		String treasureDistanceMessage = String.format("%.2f arbitrary units", treasureDistance);
 		display.display(treasureDistanceMessage);
-	}
-	
-	void generateTreasure() {
-		treasure = new Treasure(4, 6); // temporary default location
 	}
 }
