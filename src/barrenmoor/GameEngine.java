@@ -8,13 +8,13 @@ class GameEngine {
 		initialiseGame();
 	}
 
+	void initialiseGame() {
+		generateTreasure();
+	}
+
 	void playGame() {
 		display.display("Starting game");
 		display.display(treasure.toString());
-	}
-	
-	void initialiseGame() {
-		generateTreasure();
 	}
 
 	void generateTreasure() {
