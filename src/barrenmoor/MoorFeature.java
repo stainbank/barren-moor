@@ -1,6 +1,6 @@
 package barrenmoor;
 
-public abstract class MoorFeature {
+abstract class MoorFeature {
 	/*Easting and Northing are traditional cartographic terms meaning
 	 * _distance East_ and _distance North_ from Cartesian map origin (0,0).
 	 * Here they represent the distances East and North (in arbitrary units)
