@@ -15,7 +15,7 @@ abstract class MoorFeature {
 		return Math.sqrt(Math.pow(easting, 2) + Math.pow(northing, 2));
 	}
 	
-	void updateLocation(int northing, int easting) {
+	void moveRelativeToPlayer(int easting, int northing) {
 		this.easting += easting;
 		this.northing += northing;
 	}
