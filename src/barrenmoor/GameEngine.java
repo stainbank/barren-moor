@@ -46,7 +46,7 @@ class GameEngine {
 	void displayPlayerMovement(int easting, int northing){
 		boolean eastingChanges = easting != 0;
 		boolean northingChanges = northing != 0;
-		String eastingMessage = playerEasting.getBearingMessage(easting); 
+		String eastingMessage = playerEasting.getBearingMessage(easting);
 		String northingMessage = playerNorthing.getBearingMessage(northing);
 		String joiner = (eastingChanges && northingChanges) ? ", " : "";
 		
@@ -57,7 +57,7 @@ class GameEngine {
 
 	void displayTreasureLocation() {
 		String messageTemplate = "%s @ %s, %s";
-		String message = String.format(messageTemplate, treasure, treasure.northing.getBearingMessage(), treasure.northing.getBearingMessage());		
+		String message = String.format(messageTemplate, treasure, treasure.easting.getBearingMessage(), treasure.northing.getBearingMessage());
 		display.display(message);
 	}
 	
