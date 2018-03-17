@@ -3,6 +3,8 @@ package barrenmoor;
 class GameEngine {
 	DisplayManager display = new DisplayManager();
 	MoorFeature treasure;
+	double unitModifier = 1;
+	String unitName = "arbitrary units";
 	boolean treasureLocationVisible = false;
 	Bearing playerEasting = new Bearing('E', 'W');
 	Bearing playerNorthing = new Bearing('N', 'S');
@@ -63,7 +65,7 @@ class GameEngine {
 	
 	void displayTreasureDistance() {
 		double treasureDistance = treasure.getDistanceFromPlayer();
-		String treasureDistanceMessage = String.format("%.2f arbitrary units", treasureDistance);
+		String treasureDistanceMessage = String.format("%.2f %s", treasureDistance * unitModifier, unitName);
 		display.display(treasureDistanceMessage);
 	}
 }
