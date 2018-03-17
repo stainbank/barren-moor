@@ -2,9 +2,10 @@ package barrenmoor;
 
 class GameEngine {
 	DisplayManager display = new DisplayManager();
-	Translator translator = new Translator();
 	MoorFeature treasure;
 	boolean treasureLocationVisible = false;
+	Bearing playerEasting = new Bearing('E', 'W');
+	Bearing playerNorthing = new Bearing('N', 'S');
 
 	GameEngine(){
 		initialiseGame();
@@ -45,8 +46,8 @@ class GameEngine {
 	void displayPlayerMovement(int easting, int northing){
 		boolean eastingChanges = easting != 0;
 		boolean northingChanges = northing != 0;
-		String eastingMessage = (eastingChanges) ? String.format("%d%s", Math.abs(easting), translator.translateEasting(easting)) : "";
-		String northingMessage = (northingChanges) ? String.format("%d%s", Math.abs(northing), translator.translateNorthing(northing)) : "";
+		String eastingMessage = playerEasting.getBearingMessage(easting); 
+		String northingMessage = playerNorthing.getBearingMessage(northing);
 		String joiner = (eastingChanges && northingChanges) ? ", " : "";
 		
 		String messageTemplate = "Moved %s%s%s";
@@ -55,13 +56,8 @@ class GameEngine {
 	}
 
 	void displayTreasureLocation() {
-		int easting = treasure.getEasting();
-		int northing = treasure.getNorthing();
-
-		String messageTemplate = "%s @ %d%s, %d%s";
-		String message = String.format(messageTemplate, treasure,
-				Math.abs(northing), translator.translateNorthing(northing),
-				Math.abs(easting), translator.translateEasting(easting));
+		String messageTemplate = "%s @ %s, %s";
+		String message = String.format(messageTemplate, treasure, treasure.northing.getBearingMessage(), treasure.northing.getBearingMessage());		
 		display.display(message);
 	}
 	
