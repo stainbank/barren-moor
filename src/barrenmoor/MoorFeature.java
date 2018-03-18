@@ -20,6 +20,10 @@ abstract class MoorFeature {
 		return Math.sqrt(Math.pow(easting.getBearing(), 2) + Math.pow(northing.getBearing(), 2));
 	}
 	
+	void updateAfterPlayerMove(int playerEastingChange, int playerNorthingChange) {
+		moveRelativeToPlayer(-playerEastingChange, -playerNorthingChange);
+	}
+	
 	void moveRelativeToPlayer(int eastingChange, int northingChange) {
 		easting.add(eastingChange);
 		northing.add(northingChange);
