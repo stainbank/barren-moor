@@ -6,8 +6,7 @@ class GameEngine {
 	double unitModifier = 1;
 	String unitName = "arbitrary units";
 	boolean treasureLocationVisible = false;
-	Bearing playerEasting = new Bearing('E', 'W');
-	Bearing playerNorthing = new Bearing('N', 'S');
+	MoorFeature player = new Player();
 
 	GameEngine(){
 		initialiseGame();
@@ -48,8 +47,8 @@ class GameEngine {
 	void displayPlayerMovement(int easting, int northing){
 		boolean eastingChanges = easting != 0;
 		boolean northingChanges = northing != 0;
-		String eastingMessage = playerEasting.getBearingMessage(easting);
-		String northingMessage = playerNorthing.getBearingMessage(northing);
+		String eastingMessage = player.easting.getBearingMessage(easting);
+		String northingMessage = player.northing.getBearingMessage(northing);
 		String joiner = (eastingChanges && northingChanges) ? ", " : "";
 		
 		String messageTemplate = "Moved %s%s%s";
