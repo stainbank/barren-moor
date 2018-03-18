@@ -22,17 +22,21 @@ class GameEngine {
 	
 	void playGame() {
 		display.display("Starting game");
-		playScriptedGame();
+		runTurn();
 	}
-
-	void playScriptedGame() {
-		makeAndDisplayPlayerMove(-2, 6);
-	}
-
+	
 	void generateTreasure() {
 		treasure = new Treasure(4, 6); // temporary default location
 	}
 	
+	void runTurn() {
+		String simulatedUserCommand = "1NE4S"; // -> 1E, 3S
+		int[] playerMove = translateUserCommandToPlayerMove(simulatedUserCommand);
+		int eastingChange = playerMove[0];
+		int northingChange = playerMove[1];
+		makeAndDisplayPlayerMove(eastingChange, northingChange);
+	}
+
 	void makeAndDisplayPlayerMove(int eastingChange, int northingChange) {
 		movePlayer(eastingChange, northingChange);
 		displayPlayerMovement(eastingChange, northingChange);
