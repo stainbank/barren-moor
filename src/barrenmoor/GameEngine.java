@@ -26,29 +26,29 @@ class GameEngine {
 	}
 
 	void playScriptedGame() {
-		makeAndDisplayMove(-2, 6);
+		makeAndDisplayPlayerMove(-2, 6);
 	}
 
 	void generateTreasure() {
 		treasure = new Treasure(4, 6); // temporary default location
 	}
 	
-	void makeAndDisplayMove(int easting, int northing) {
-		movePlayer(easting, northing);
-		displayPlayerMovement(easting, northing);
+	void makeAndDisplayPlayerMove(int eastingChange, int northingChange) {
+		movePlayer(eastingChange, northingChange);
+		displayPlayerMovement(eastingChange, northingChange);
 		displayTreasureDistance();
 		if (treasureLocationVisible) displayTreasureLocation();
 	}
 
-	void movePlayer(int easting, int northing){
-		treasure.moveRelativeToPlayer(easting, northing);
+	void movePlayer(int eastingChange, int northingChange){
+		treasure.moveRelativeToPlayer(eastingChange, northingChange);
 	}
 	
-	void displayPlayerMovement(int easting, int northing){
-		boolean eastingChanges = easting != 0;
-		boolean northingChanges = northing != 0;
-		String eastingMessage = player.easting.getBearingMessage(easting);
-		String northingMessage = player.northing.getBearingMessage(northing);
+	void displayPlayerMovement(int eastingChange, int northingChange){
+		boolean eastingChanges = eastingChange != 0;
+		boolean northingChanges = northingChange != 0;
+		String eastingMessage = player.easting.getBearingMessage(eastingChange);
+		String northingMessage = player.northing.getBearingMessage(northingChange);
 		String joiner = (eastingChanges && northingChanges) ? ", " : "";
 		
 		String messageTemplate = "Moved %s%s%s";
