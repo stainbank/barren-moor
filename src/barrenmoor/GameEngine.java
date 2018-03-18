@@ -36,6 +36,12 @@ class GameEngine {
 		int northingChange = playerMove[1];
 		makeAndDisplayPlayerMove(eastingChange, northingChange);
 	}
+	
+	int[] translateUserCommandToPlayerMove(String userCommand) {
+		CommandParser commandParser = new CommandParser(userCommand);
+		commandParser.parseCommand();
+		return commandParser.getBearingChanges();
+	}
 
 	void makeAndDisplayPlayerMove(int eastingChange, int northingChange) {
 		movePlayer(eastingChange, northingChange);
