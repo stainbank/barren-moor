@@ -22,14 +22,18 @@ class GameEngine {
 	
 	void playGame() {
 		display.display("Starting game");
-		runTurn();
+		try {
+			runTurn();
+		} catch (InvalidInputException e) {
+			display.display(String.format("Invalid input: %s", e.getMessage()));
+		}
 	}
 	
 	void generateTreasure() {
 		treasure = new Treasure(4, 6); // temporary default location
 	}
 	
-	void runTurn() {
+	void runTurn() throws InvalidInputException {
 		String simulatedUserCommand = "N14SE";
 		int[] playerMove = translateUserCommandToPlayerMove(simulatedUserCommand);
 		int eastingChange = playerMove[0];
@@ -37,7 +41,7 @@ class GameEngine {
 		makeAndDisplayPlayerMove(eastingChange, northingChange);
 	}
 	
-	int[] translateUserCommandToPlayerMove(String userCommand) {
+	int[] translateUserCommandToPlayerMove(String userCommand) throws InvalidInputException {
 		CommandParser commandParser = new CommandParser(userCommand);
 		commandParser.parseCommand();
 		return commandParser.getBearingChanges();

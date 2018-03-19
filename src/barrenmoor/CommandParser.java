@@ -9,13 +9,13 @@ class CommandParser {
 		remainingUserCommand = userCommand;
 	}
 	
-	void parseCommand(){
+	void parseCommand() throws InvalidInputException {
 		while (!remainingUserCommand.isEmpty()) {
 			parseNextToken();
 		}
 	}
 
-	void parseNextToken(){
+	void parseNextToken() throws InvalidInputException {
 		String digits = "";
 		boolean isDigit = true;
 		int i;
@@ -37,7 +37,7 @@ class CommandParser {
 		return (digits.isEmpty()) ? 1 : Integer.parseInt(digits);
 	}
 	
-	void applySteps(int nSteps, char direction) {
+	void applySteps(int nSteps, char direction) throws InvalidInputException {
 		switch (direction) {
 			case 'E': bearingChanges[0] += nSteps;
 					  break;
@@ -47,7 +47,7 @@ class CommandParser {
 					  break;
 			case 'S': bearingChanges[1] -= nSteps;
 					  break;
-			default : System.out.println(direction + "is not a valid direction"); // TODO throw exception
+			default : throw new InvalidInputException(String.valueOf(direction));
 		}
 	}
 	
