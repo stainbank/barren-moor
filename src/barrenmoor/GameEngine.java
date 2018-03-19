@@ -30,7 +30,7 @@ class GameEngine {
 	}
 	
 	void runTurn() {
-		String simulatedUserCommand = "1NE4S"; // -> 1E, 3S
+		String simulatedUserCommand = "N14SE";
 		int[] playerMove = translateUserCommandToPlayerMove(simulatedUserCommand);
 		int eastingChange = playerMove[0];
 		int northingChange = playerMove[1];
