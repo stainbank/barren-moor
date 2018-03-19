@@ -1,5 +1,7 @@
 package barrenmoor;
 
+import java.util.Scanner;
+
 class GameEngine {
 	DisplayManager display = new DisplayManager();
 	MoorFeature treasure;
@@ -7,6 +9,8 @@ class GameEngine {
 	String unitName = "arbitrary units";
 	boolean treasureLocationVisible = false;
 	MoorFeature player = new Player();
+	Scanner scanner = new Scanner(System.in);
+	boolean gameRunning;
 
 	GameEngine(){
 		initialiseGame();
@@ -14,6 +18,7 @@ class GameEngine {
 
 	void initialiseGame() {
 		generateTreasure();
+		gameRunning = true;
 	}
 	
 	void activateCheats() {
@@ -22,11 +27,14 @@ class GameEngine {
 	
 	void playGame() {
 		display.display("Starting game");
-		try {
-			runTurn();
-		} catch (InvalidInputException e) {
-			display.display(String.format("Invalid input: %s", e.getMessage()));
+		while (gameRunning) {
+			try {
+				runTurn();
+			} catch (InvalidInputException e) {
+				display.display(String.format("Invalid input: %s", e.getMessage()));
+			}
 		}
+		displayGameOver();
 	}
 	
 	void generateTreasure() {
@@ -80,5 +88,10 @@ class GameEngine {
 		double treasureDistance = treasure.getDistanceFromPlayer();
 		String treasureDistanceMessage = String.format("%.2f %s", treasureDistance * unitModifier, unitName);
 		display.display(treasureDistanceMessage);
+	}
+	
+	void displayGameOver() {
+		String gameOverMessage = "Game over :)";
+		display.display(gameOverMessage);
 	}
 }
