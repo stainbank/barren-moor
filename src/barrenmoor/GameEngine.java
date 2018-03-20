@@ -42,6 +42,7 @@ class GameEngine {
 		display.display(startTurnMessage);
 
 		int[] playerMove = getValidPlayerMove();
+		if (!gameRunning) return;
 		makeAndDisplayPlayerMove(playerMove[0], playerMove[1]);
 	}
 
@@ -50,6 +51,10 @@ class GameEngine {
 		int[] playerMove = new int[2];
 		while (invalidInput) {
 			String userCommand = getUserCommand();
+			if (isExitRequested(userCommand)) {
+				gameRunning = false;
+				break;
+			}
 			try {
 				playerMove = translateUserCommandToPlayerMove(userCommand);
 				invalidInput = false;
@@ -62,6 +67,15 @@ class GameEngine {
 	
 	String getUserCommand(){
 		return scanner.next();
+	}
+	
+	boolean isExitRequested(String userCommand) {
+		switch (userCommand.toLowerCase()) {
+		case "q": return true;
+		case "quit": return true;
+		case "exit": return true;
+		default : return false;
+		}
 	}
 	
 	int[] translateUserCommandToPlayerMove(String userCommand) throws InvalidInputException {
