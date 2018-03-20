@@ -28,11 +28,7 @@ class GameEngine {
 	void playGame() {
 		display.display("Starting game");
 		while (gameRunning) {
-			try {
-				runTurn();
-			} catch (InvalidInputException e) {
-				display.display(String.format("Invalid input: %s", e.getMessage()));
-			}
+			runTurn();
 		}
 		displayGameOver();
 	}
@@ -41,15 +37,30 @@ class GameEngine {
 		treasure = new Treasure(4, 6); // temporary default location
 	}
 	
-	void runTurn() throws InvalidInputException {
-		String userCommand = getUserCommand();
-		int[] playerMove = translateUserCommandToPlayerMove(userCommand);
+	void runTurn() {
+		String startTurnMessage = "New turn, please enter command:";
+		display.display(startTurnMessage);
+
+		int[] playerMove = getValidPlayerMove();
 		makeAndDisplayPlayerMove(playerMove[0], playerMove[1]);
+	}
+
+	int[] getValidPlayerMove() {
+		boolean invalidInput = true;
+		int[] playerMove = new int[2];
+		while (invalidInput) {
+			String userCommand = getUserCommand();
+			try {
+				playerMove = translateUserCommandToPlayerMove(userCommand);
+				invalidInput = false;
+			} catch (InvalidInputException e) {
+				displayInvalidInput(userCommand);
+			}
+		}
+		return playerMove;
 	}
 	
 	String getUserCommand(){
-		String startTurnMessage = "New turn, please enter command:";
-		display.display(startTurnMessage);
 		return scanner.next();
 	}
 	
@@ -68,6 +79,10 @@ class GameEngine {
 
 	void movePlayer(int eastingChange, int northingChange){
 		treasure.moveRelativeToPlayer(eastingChange, northingChange);
+	}
+	
+	void displayInvalidInput(String invalidInput) {
+		display.display(String.format("Invalid input: %s", invalidInput));
 	}
 	
 	void displayPlayerMovement(int eastingChange, int northingChange){
