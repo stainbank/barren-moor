@@ -42,11 +42,15 @@ class GameEngine {
 	}
 	
 	void runTurn() throws InvalidInputException {
-		String simulatedUserCommand = "N14SE";
-		int[] playerMove = translateUserCommandToPlayerMove(simulatedUserCommand);
-		int eastingChange = playerMove[0];
-		int northingChange = playerMove[1];
-		makeAndDisplayPlayerMove(eastingChange, northingChange);
+		String userCommand = getUserCommand();
+		int[] playerMove = translateUserCommandToPlayerMove(userCommand);
+		makeAndDisplayPlayerMove(playerMove[0], playerMove[1]);
+	}
+	
+	String getUserCommand(){
+		String startTurnMessage = "New turn, please enter command:";
+		display.display(startTurnMessage);
+		return scanner.next();
 	}
 	
 	int[] translateUserCommandToPlayerMove(String userCommand) throws InvalidInputException {
