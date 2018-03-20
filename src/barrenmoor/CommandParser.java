@@ -19,7 +19,7 @@ class CommandParser {
 		String digits = "";
 		boolean isDigit = true;
 		int i;
-		for (i = 0; isDigit; i++) {
+		for (i = 0; isDigit && i < remainingUserCommand.length(); i++) {
 			char token = remainingUserCommand.charAt(i);
 			if (Character.isDigit(token)){
 				digits += String.valueOf(token);
